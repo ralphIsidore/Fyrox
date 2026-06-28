@@ -72,7 +72,7 @@ pub enum StyleProperty {
 
 impl Default for StyleProperty {
     fn default() -> Self {
-        Self::Number(0.0)
+        Self::Number(1.0)
     }
 }
 
@@ -359,6 +359,11 @@ impl Style {
     /// The name of the hover state brush of the `cancel` context action.
     pub const BRUSH_CANCEL_HOVER: &'static str = "Global.Brush.Cancel.Hover";
 
+    //RALPH
+
+    pub const BORDER_STROKE_THICKNESS: &'static str = "Globa.border.Thickness";
+    pub const FULL_WINDOW_MARGIN_LEFT: &'static str = "global.Full.Window.Margin.Left";
+
     fn base_style() -> Style {
         let mut style = Self::default();
 
@@ -376,20 +381,19 @@ impl Style {
     pub fn dark_style() -> Style {
         let mut style = Self::base_style();
         style
+            .set(Self::FULL_WINDOW_MARGIN_LEFT, Thickness::left(8.0))
+            // .set(Self::TEST_BORDER_THICKNESS, Thickness::uniform(30.0))
             .set(Self::BRUSH_DARKEST, Brush::Solid(Color::repeat_opaque(20)))
-            .set(Self::BRUSH_DARKER, Brush::Solid(Color::repeat_opaque(30)))
+            // .set(Self::BRUSH_DARKER, Brush::Solid(Color::repeat_opaque(30)))
             .set(Self::BRUSH_DARK, Brush::Solid(Color::repeat_opaque(40)))
             .set(Self::BRUSH_PRIMARY, Brush::Solid(Color::repeat_opaque(50)))
             .set(
                 Self::BRUSH_LIGHTER_PRIMARY,
                 Brush::Solid(Color::repeat_opaque(60)),
             )
-            .set(Self::BRUSH_LIGHT, Brush::Solid(Color::repeat_opaque(70)))
+            .set(Self::BRUSH_LIGHT, Brush::Solid(Color::repeat_opaque(140)))
             .set(Self::BRUSH_LIGHTER, Brush::Solid(Color::repeat_opaque(85)))
-            .set(
-                Self::BRUSH_LIGHTEST,
-                Brush::Solid(Color::repeat_opaque(100)),
-            )
+            .set(Self::BRUSH_LIGHTEST, Brush::Solid(Color::repeat_opaque(80)))
             .set(Self::BRUSH_BRIGHT, Brush::Solid(Color::repeat_opaque(130)))
             .set(
                 Self::BRUSH_BRIGHTEST,
@@ -408,7 +412,7 @@ impl Style {
                 Brush::Solid(Color::opaque(66, 99, 149)),
             )
             .set(Self::BRUSH_TEXT, Brush::Solid(Color::opaque(190, 190, 190)))
-            .set(Self::BRUSH_FOREGROUND, Brush::Solid(Color::WHITE))
+            // .set(Self::BRUSH_FOREGROUND, Brush::Solid(Color::WHITE))
             .set(Self::BRUSH_INFORMATION, Brush::Solid(Color::ANTIQUE_WHITE))
             .set(Self::BRUSH_WARNING, Brush::Solid(Color::GOLD))
             .set(Self::BRUSH_ERROR, Brush::Solid(Color::RED))

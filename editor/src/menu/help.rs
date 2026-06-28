@@ -40,6 +40,7 @@ impl HelpMenu {
     pub fn new(ctx: &mut BuildContext) -> Self {
         let open_book;
         let open_api_reference;
+
         let menu = create_root_menu_item(
             "Help",
             Self::HELP,

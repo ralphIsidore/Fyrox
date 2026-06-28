@@ -23,6 +23,7 @@
 
 #![warn(missing_docs)]
 
+use crate::button::Button;
 use crate::message::MessageData;
 use crate::stack_panel::StackPanel;
 use crate::vector_image::VectorImage;
@@ -39,13 +40,20 @@ use crate::{
     message::{ButtonState, KeyCode, OsEvent, UiMessage},
     popup::{Placement, Popup, PopupBuilder, PopupMessage},
     stack_panel::StackPanelBuilder,
-    style::{resource::StyleResourceExt, Style},
+    // style::{resource::StyleResourceExt, Style},
     text::TextBuilder,
     utils::{make_arrow_primitives, ArrowDirection},
     vector_image::VectorImageBuilder,
     widget::{self, Widget, WidgetBuilder, WidgetMessage},
-    BuildContext, Control, HorizontalAlignment, Orientation, RestrictionEntry, Thickness, UiNode,
-    UserInterface, VerticalAlignment,
+    BuildContext,
+    Control,
+    HorizontalAlignment,
+    Orientation,
+    RestrictionEntry,
+    Thickness,
+    UiNode,
+    UserInterface,
+    VerticalAlignment,
 };
 use fyrox_core::pool::{HandlesVecExtension, ObjectOrVariant};
 use fyrox_graph::{
@@ -819,7 +827,7 @@ impl MenuBuilder {
 
         let back = BorderBuilder::new(
             WidgetBuilder::new()
-                .with_background(ctx.style.property(Style::BRUSH_PRIMARY))
+                // .with_background(ctx.style.property(Style::BRUSH_PRIMARY))
                 .with_child(
                     StackPanelBuilder::new(
                         WidgetBuilder::new().with_children(self.items.clone().to_base()),
@@ -1023,7 +1031,7 @@ impl MenuItemBuilder {
                     .with_child(
                         TextBuilder::new(
                             WidgetBuilder::new()
-                                .with_foreground(ctx.style.property(Style::BRUSH_LIGHTEST))
+                                // .with_foreground(ctx.style.property(Style::BRUSH_LIGHTEST))
                                 .with_horizontal_alignment(HorizontalAlignment::Right)
                                 .with_vertical_alignment(VerticalAlignment::Center)
                                 .with_margin(Thickness::uniform(1.0))
@@ -1036,12 +1044,12 @@ impl MenuItemBuilder {
                         arrow_widget = if *arrow {
                             VectorImageBuilder::new(
                                 WidgetBuilder::new()
-                                    .with_visibility(!self.items.is_empty())
-                                    .on_column(3)
-                                    .with_width(8.0)
-                                    .with_height(8.0)
-                                    .with_foreground(ctx.style.property(Style::BRUSH_BRIGHT))
-                                    .with_horizontal_alignment(HorizontalAlignment::Center)
+                                    // .with_visibility(!self.items.is_empty())
+                                    // .on_column(3)
+                                    // .with_width(8.0)
+                                    // .with_height(8.0)
+                                    // .with_foreground(ctx.style.property(Style::BRUSH_BRIGHT))
+                                    // .with_horizontal_alignment(HorizontalAlignment::Center)
                                     .with_vertical_alignment(VerticalAlignment::Center),
                             )
                             .with_primitives(make_arrow_primitives(ArrowDirection::Right, 8.0))
@@ -1076,9 +1084,9 @@ impl MenuItemBuilder {
                 BorderBuilder::new(WidgetBuilder::new())
                     .with_stroke_thickness(Thickness::uniform(0.0).into()),
             )
-            .with_hover_brush(ctx.style.property(Style::BRUSH_BRIGHT_BLUE))
-            .with_selected_brush(ctx.style.property(Style::BRUSH_BRIGHT_BLUE))
-            .with_normal_brush(ctx.style.property(Style::BRUSH_PRIMARY))
+            // .with_hover_brush(ctx.style.property(Style::BRUSH_BRIGHT_BLUE))
+            // .with_selected_brush(ctx.style.property(Style::BRUSH_BRIGHT_BLUE))
+            // .with_normal_brush(ctx.style.property(Style::BRUSH_PRIMARY))
             .with_pressed_brush(Brush::Solid(Color::TRANSPARENT).into())
             .with_pressable(false)
             .build(ctx)
@@ -1186,6 +1194,9 @@ impl Control for ContextMenu {
     control_trait_proxy_impls!(popup);
 
     fn handle_routed_message(&mut self, ui: &mut UserInterface, message: &mut UiMessage) {
+        //  TODO:  RALPH -  ralph's edits.
+        // ui.style().data_ref().set(Style::, value)
+
         self.popup.handle_routed_message(ui, message);
 
         if let Some(WidgetMessage::KeyDown(key_code)) = message.data() {
@@ -1317,8 +1328,7 @@ pub fn make_menu_splitter(ctx: &mut BuildContext) -> Handle<UiNode> {
     BorderBuilder::new(
         WidgetBuilder::new()
             .with_height(1.0)
-            .with_margin(Thickness::top_bottom(1.0))
-            .with_foreground(ctx.style.property(Style::BRUSH_LIGHTEST)),
+            .with_margin(Thickness::top_bottom(1.0)), // .with_foreground(ctx.style.property(Style::BRUSH_LIGHTEST)),
     )
     .build(ctx)
     .to_base()

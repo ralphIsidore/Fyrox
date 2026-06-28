@@ -166,7 +166,7 @@ impl MessageData for DropdownListMessage {}
 /// ## Opening and Closing
 ///
 /// A dropdown list could be opened and closed manually using [`DropdownListMessage::Open`] and
-/// [`DropdownListMessage::Close`] messages.  
+/// [`DropdownListMessage::Close`] messages.
 #[derive(Default, Clone, Debug, Visit, Reflect)]
 #[reflect(
     derived_type = "UiNode",

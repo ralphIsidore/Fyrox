@@ -326,44 +326,50 @@ impl WorldViewer {
         .add_column(Column::auto())
         .add_column(Column::stretch())
         .build(ctx);
+        let left_margin: Thickness = ctx.style.get_or_default(Style::FULL_WINDOW_MARGIN_LEFT);
 
-        let window = WindowBuilder::new(WidgetBuilder::new().with_name("WorldOutliner"))
-            .with_title(WindowTitle::text("World Viewer"))
-            .with_tab_label("World")
-            .with_content(
-                GridBuilder::new(
-                    WidgetBuilder::new()
-                        .with_child(toolbar)
-                        .with_child({
-                            scroll_view = ScrollViewerBuilder::new(WidgetBuilder::new().on_row(1))
-                                .with_content({
-                                    tree_root = TreeRootBuilder::new(
-                                        WidgetBuilder::new().with_tab_index(Some(5)),
-                                    )
-                                    .build(ctx);
-                                    tree_root
-                                })
+        let window = WindowBuilder::new(
+            WidgetBuilder::new()
+                .with_margin(left_margin)
+                // Ralph
+                .with_name("WorldOutliner"),
+        )
+        .with_title(WindowTitle::text("World Viewer"))
+        .with_tab_label("World")
+        .with_content(
+            GridBuilder::new(
+                WidgetBuilder::new()
+                    .with_child(toolbar)
+                    .with_child({
+                        scroll_view = ScrollViewerBuilder::new(WidgetBuilder::new().on_row(1))
+                            .with_content({
+                                tree_root = TreeRootBuilder::new(
+                                    WidgetBuilder::new().with_tab_index(Some(5)),
+                                )
                                 .build(ctx);
-                            scroll_view
-                        })
-                        .with_child({
-                            node_path = WrapPanelBuilder::new(
-                                WidgetBuilder::new()
-                                    .on_row(2)
-                                    .with_vertical_alignment(VerticalAlignment::Top),
-                            )
-                            .with_orientation(Orientation::Horizontal)
+                                tree_root
+                            })
                             .build(ctx);
-                            node_path
-                        }),
-                )
-                .add_column(Column::stretch())
-                .add_row(Row::auto())
-                .add_row(Row::stretch())
-                .add_row(Row::auto())
-                .build(ctx),
+                        scroll_view
+                    })
+                    .with_child({
+                        node_path = WrapPanelBuilder::new(
+                            WidgetBuilder::new()
+                                .on_row(2)
+                                .with_vertical_alignment(VerticalAlignment::Top),
+                        )
+                        .with_orientation(Orientation::Horizontal)
+                        .build(ctx);
+                        node_path
+                    }),
             )
-            .build(ctx);
+            .add_column(Column::stretch())
+            .add_row(Row::auto())
+            .add_row(Row::stretch())
+            .add_row(Row::auto())
+            .build(ctx),
+        )
+        .build(ctx);
 
         Self {
             search_bar,

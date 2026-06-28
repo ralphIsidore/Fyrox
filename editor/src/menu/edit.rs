@@ -18,14 +18,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-use crate::fyrox::{
-    core::pool::Handle,
-    gui::{
-        menu::MenuItemMessage, message::UiMessage, widget::WidgetMessage, BuildContext,
-        UserInterface,
-    },
-};
 use crate::scene::controller::SceneController;
+use crate::{
+    fyrox::{
+        core::pool::Handle,
+        gui::{
+            menu::MenuItemMessage, message::UiMessage, widget::WidgetMessage, BuildContext,
+            UserInterface,
+        },
+    },
+    ui_scene::commands::widget,
+};
 use crate::{
     load_image,
     menu::{create_menu_item_shortcut, create_root_menu_item},
@@ -33,9 +36,15 @@ use crate::{
     scene::{commands::PasteCommand, GameScene, Selection},
     Engine, Message, Mode,
 };
-use fyrox::core::uuid::{uuid, Uuid};
 use fyrox::gui::menu;
 use fyrox::gui::menu::MenuItem;
+use fyrox::{
+    core::{
+        reflect::Reflect,
+        uuid::{uuid, Uuid},
+    },
+    gui::widget::Widget,
+};
 
 pub struct EditMenu {
     pub menu: Handle<MenuItem>,

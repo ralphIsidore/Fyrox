@@ -1091,9 +1091,9 @@ fn make_header_button(ctx: &mut BuildContext, button: HeaderButton) -> Handle<Bu
                     .with_pad_by_corner_radius(false)
                     .with_corner_radius(4.0f32.into()),
             )
-            .with_normal_brush(Brush::Solid(Color::TRANSPARENT).into())
-            .with_hover_brush(ctx.style.property(Style::BRUSH_LIGHT))
-            .with_pressed_brush(ctx.style.property(Style::BRUSH_LIGHTEST))
+            // .with_normal_brush(Brush::Solid(Color::TRANSPARENT).into())
+            // .with_hover_brush(ctx.style.property(Style::BRUSH_LIGHT))
+            // .with_pressed_brush(ctx.style.property(Style::BRUSH_LIGHTEST))
             .build(ctx),
         )
         .with_content(make_mark(ctx, button))
@@ -1294,8 +1294,8 @@ impl WindowBuilder {
                 })
                 .on_row(0),
         )
-        .with_pad_by_corner_radius(false)
-        .with_corner_radius(4.0f32.into())
+        // .with_pad_by_corner_radius(false)
+        // .with_corner_radius(4.0f32.into())
         .with_stroke_thickness(Thickness::uniform(0.0).into())
         .build(ctx)
         .to_base();

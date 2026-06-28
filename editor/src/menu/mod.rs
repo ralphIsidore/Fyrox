@@ -40,16 +40,22 @@ use crate::{
     stats::StatisticsWindow,
     Engine, Mode, SceneSettingsWindow,
 };
-use fyrox::asset::manager::ResourceManager;
-use fyrox::core::uuid::Uuid;
-use fyrox::gui::file_browser::FileType;
-use fyrox::gui::image::{Image, ImageBuilder};
-use fyrox::gui::menu::MenuItem;
-use fyrox::gui::texture::TextureResource;
-use fyrox::gui::window::Window;
+use fyrox::gui::{
+    decorator::Decorator,
+    image::{Image, ImageBuilder},
+};
+use fyrox::gui::{decorator::DecoratorBuilder, menu::MenuItem};
+use fyrox::gui::{file_browser::FileType, style::Style};
+use fyrox::gui::{style::resource::StyleResourceExt, window::Window};
+use fyrox::{asset::manager::ResourceManager, gui::border::BorderBuilder};
+use fyrox::{core::uuid::Uuid, gui::text::TextBuilder};
+use fyrox::{
+    core::{reflect::Reflect, visitor::Visit},
+    gui::texture::TextureResource,
+};
 use std::path::PathBuf;
 use std::sync::mpsc::Sender;
-
+// This file is the top menu bar
 pub mod create;
 pub mod edit;
 pub mod file;
@@ -68,6 +74,7 @@ pub struct Menu {
     pub utils_menu: UtilsMenu,
     pub help_menu: HelpMenu,
 }
+// TODO: RALPH -
 
 pub struct Panels<'b> {
     pub scene_frame: Handle<Image>,
@@ -103,7 +110,7 @@ pub fn create_root_menu_item(
         WidgetBuilder::new()
             .with_id(id)
             .with_name(text)
-            .with_margin(Thickness::right(10.0)),
+            .with_margin(ctx.style.get_or_default(Style::FULL_WINDOW_MARGIN_LEFT)),
     )
     .with_content(MenuItemContent::text_centered(text))
     .with_items(items)
@@ -116,10 +123,14 @@ pub fn create_menu_item(
     items: Vec<Handle<MenuItem>>,
     ctx: &mut BuildContext,
 ) -> Handle<MenuItem> {
+    /////Ralph.
+    /// TODO: clean up
+    ///
+    ///
     MenuItemBuilder::new(
         WidgetBuilder::new()
             .with_id(id)
-            .with_min_size(Vector2::new(120.0, 22.0)),
+            .with_min_size(Vector2::new(210.0, 22.0)),
     )
     .with_content(MenuItemContent::text(text))
     .with_items(items)
