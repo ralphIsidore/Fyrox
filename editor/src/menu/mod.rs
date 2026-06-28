@@ -40,22 +40,16 @@ use crate::{
     stats::StatisticsWindow,
     Engine, Mode, SceneSettingsWindow,
 };
-use fyrox::gui::{
-    decorator::Decorator,
-    image::{Image, ImageBuilder},
-};
-use fyrox::gui::{decorator::DecoratorBuilder, menu::MenuItem};
-use fyrox::gui::{file_browser::FileType, style::Style};
-use fyrox::gui::{style::resource::StyleResourceExt, window::Window};
+use fyrox::gui::image::{Image, ImageBuilder};
+use fyrox::gui::menu::MenuItem;
+use fyrox::gui::texture::TextureResource;
+use fyrox::gui::window::Window;
+use fyrox::gui::{decorator::DecoratorBuilder, file_browser::FileType};
 use fyrox::{asset::manager::ResourceManager, gui::border::BorderBuilder};
-use fyrox::{core::uuid::Uuid, gui::text::TextBuilder};
-use fyrox::{
-    core::{reflect::Reflect, visitor::Visit},
-    gui::texture::TextureResource,
-};
+use fyrox::{core::uuid::Uuid, gui::widget::Widget};
 use std::path::PathBuf;
 use std::sync::mpsc::Sender;
-// This file is the top menu bar
+
 pub mod create;
 pub mod edit;
 pub mod file;
@@ -74,7 +68,6 @@ pub struct Menu {
     pub utils_menu: UtilsMenu,
     pub help_menu: HelpMenu,
 }
-// TODO: RALPH -
 
 pub struct Panels<'b> {
     pub scene_frame: Handle<Image>,
@@ -110,7 +103,7 @@ pub fn create_root_menu_item(
         WidgetBuilder::new()
             .with_id(id)
             .with_name(text)
-            .with_margin(ctx.style.get_or_default(Style::FULL_WINDOW_MARGIN_LEFT)),
+            .with_margin(Thickness::right(10.0)),
     )
     .with_content(MenuItemContent::text_centered(text))
     .with_items(items)
@@ -123,14 +116,10 @@ pub fn create_menu_item(
     items: Vec<Handle<MenuItem>>,
     ctx: &mut BuildContext,
 ) -> Handle<MenuItem> {
-    /////Ralph.
-    /// TODO: clean up
-    ///
-    ///
     MenuItemBuilder::new(
         WidgetBuilder::new()
             .with_id(id)
-            .with_min_size(Vector2::new(210.0, 22.0)),
+            .with_min_size(Vector2::new(120.0, 22.0)),
     )
     .with_content(MenuItemContent::text(text))
     .with_items(items)
@@ -157,11 +146,21 @@ pub fn create_menu_item_shortcut(
         None => MenuItemContent::text_with_shortcut(text, shortcut),
     };
 
+    let decorator = DecoratorBuilder::new(
+        BorderBuilder::new(WidgetBuilder::new())
+            .with_stroke_thickness(Thickness::uniform(1.0).into())
+            .with_pad_by_corner_radius(false)
+            .with_corner_radius(8.0.into()),
+    )
+    .build(ctx)
+    .to_base();
+
     MenuItemBuilder::new(
         WidgetBuilder::new()
             .with_id(id)
             .with_min_size(Vector2::new(120.0, 22.0)),
     )
+    .with_back(decorator)
     .with_content(icon)
     .with_items(items)
     .build(ctx)

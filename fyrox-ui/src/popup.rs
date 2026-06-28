@@ -23,6 +23,7 @@
 
 #![warn(missing_docs)]
 
+use crate::border::Border;
 use crate::message::MessageData;
 use crate::{
     border::BorderBuilder,
@@ -600,6 +601,7 @@ impl PopupBuilder {
         )
         .with_corner_radius(10.0.into())
         .with_stroke_thickness(Thickness::uniform(1.0).into())
+        .with_corner_radius(8.0.into())
         .build(ctx)
         .to_base();
 
