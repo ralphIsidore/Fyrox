@@ -40,11 +40,14 @@ use crate::{
     stats::StatisticsWindow,
     Engine, Mode, SceneSettingsWindow,
 };
-use fyrox::gui::image::{Image, ImageBuilder};
 use fyrox::gui::menu::MenuItem;
 use fyrox::gui::texture::TextureResource;
 use fyrox::gui::window::Window;
 use fyrox::gui::{decorator::DecoratorBuilder, file_browser::FileType};
+use fyrox::gui::{
+    image::{Image, ImageBuilder},
+    style::{resource::StyleResourceExt, Style},
+};
 use fyrox::{asset::manager::ResourceManager, gui::border::BorderBuilder};
 use fyrox::{core::uuid::Uuid, gui::widget::Widget};
 use std::path::PathBuf;
@@ -92,7 +95,7 @@ pub struct MenuContext<'a, 'b> {
     pub settings: &'b mut Settings,
     pub icon_request_sender: Sender<IconRequest>,
 }
-
+// menu items -> dropdowns
 pub fn create_root_menu_item(
     text: &str,
     id: Uuid,
@@ -103,7 +106,7 @@ pub fn create_root_menu_item(
         WidgetBuilder::new()
             .with_id(id)
             .with_name(text)
-            .with_margin(Thickness::right(10.0)),
+            .with_margin(Thickness::right(16.0)),
     )
     .with_content(MenuItemContent::text_centered(text))
     .with_items(items)
@@ -116,12 +119,22 @@ pub fn create_menu_item(
     items: Vec<Handle<MenuItem>>,
     ctx: &mut BuildContext,
 ) -> Handle<MenuItem> {
+    let decorator = DecoratorBuilder::new(
+        BorderBuilder::new(WidgetBuilder::new())
+            .with_stroke_thickness(Thickness::uniform(1.0).into())
+            .with_pad_by_corner_radius(false)
+            .with_corner_radius(ctx.style.property(Style::MENU_ITEM_BORDER_RADIUS)),
+    )
+    .build(ctx)
+    .to_base();
+
     MenuItemBuilder::new(
         WidgetBuilder::new()
             .with_id(id)
             .with_min_size(Vector2::new(120.0, 22.0)),
     )
     .with_content(MenuItemContent::text(text))
+    .with_back(decorator)
     .with_items(items)
     .build(ctx)
 }
@@ -138,7 +151,7 @@ pub fn create_menu_item_shortcut(
         Some(icon) => MenuItemContent::text_with_shortcut_and_icon(
             text,
             shortcut,
-            ImageBuilder::new(WidgetBuilder::new().with_margin(Thickness::uniform(4.0)))
+            ImageBuilder::new(WidgetBuilder::new().with_margin(Thickness::uniform(1.0))) //margin for each menu item
                 .with_keep_aspect_ratio(true)
                 .with_texture(icon)
                 .build(ctx),
@@ -150,7 +163,7 @@ pub fn create_menu_item_shortcut(
         BorderBuilder::new(WidgetBuilder::new())
             .with_stroke_thickness(Thickness::uniform(1.0).into())
             .with_pad_by_corner_radius(false)
-            .with_corner_radius(8.0.into()),
+            .with_corner_radius(ctx.style.property(Style::MENU_ITEM_BORDER_RADIUS)),
     )
     .build(ctx)
     .to_base();

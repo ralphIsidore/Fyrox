@@ -1032,8 +1032,8 @@ impl MenuItemBuilder {
                         TextBuilder::new(
                             WidgetBuilder::new()
                                 // .with_foreground(ctx.style.property(Style::BRUSH_LIGHTEST))
-                                .with_horizontal_alignment(HorizontalAlignment::Right)
-                                .with_vertical_alignment(VerticalAlignment::Center)
+                                // .with_horizontal_alignment(HorizontalAlignment::Right)
+                                // .with_vertical_alignment(VerticalAlignment::Center)
                                 .with_margin(Thickness::uniform(1.0))
                                 .on_column(2),
                         )
@@ -1044,12 +1044,12 @@ impl MenuItemBuilder {
                         arrow_widget = if *arrow {
                             VectorImageBuilder::new(
                                 WidgetBuilder::new()
-                                    // .with_visibility(!self.items.is_empty())
-                                    // .on_column(3)
-                                    // .with_width(8.0)
-                                    // .with_height(8.0)
+                                    .with_visibility(!self.items.is_empty())
+                                    .on_column(3)
+                                    .with_width(8.0)
+                                    .with_height(8.0)
                                     // .with_foreground(ctx.style.property(Style::BRUSH_BRIGHT))
-                                    // .with_horizontal_alignment(HorizontalAlignment::Center)
+                                    .with_horizontal_alignment(HorizontalAlignment::Center)
                                     .with_vertical_alignment(VerticalAlignment::Center),
                             )
                             .with_primitives(make_arrow_primitives(ArrowDirection::Right, 8.0))

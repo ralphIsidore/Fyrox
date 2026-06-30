@@ -361,6 +361,9 @@ impl Style {
 
     //RALPH
 
+    pub const UI_PRIMARY: &'static str = "Global.UI.Primary";
+    pub const MENU_ITEM_BORDER_RADIUS: &'static str = "Global.Item.Border.Radius"; // sets overall UI Menu item raduis for top menu
+
     pub const BORDER_STROKE_THICKNESS: &'static str = "Globa.border.Thickness";
     pub const FULL_WINDOW_MARGIN_LEFT: &'static str = "global.Full.Window.Margin.Left";
 
@@ -381,6 +384,8 @@ impl Style {
     pub fn dark_style() -> Style {
         let mut style = Self::base_style();
         style
+            .set(Self::UI_PRIMARY, Brush::solid(0, 30, 30)) //overall UI
+            .set(Self::MENU_ITEM_BORDER_RADIUS, 4.0)
             .set(Self::FULL_WINDOW_MARGIN_LEFT, Thickness::left(8.0))
             // .set(Self::TEST_BORDER_THICKNESS, Thickness::uniform(30.0))
             .set(Self::BRUSH_DARKEST, Brush::Solid(Color::repeat_opaque(20)))
@@ -391,10 +396,10 @@ impl Style {
                 Self::BRUSH_LIGHTER_PRIMARY,
                 Brush::Solid(Color::repeat_opaque(60)),
             )
-            .set(Self::BRUSH_LIGHT, Brush::Solid(Color::repeat_opaque(140)))
-            .set(Self::BRUSH_LIGHTER, Brush::Solid(Color::repeat_opaque(85)))
-            .set(Self::BRUSH_LIGHTEST, Brush::Solid(Color::repeat_opaque(80)))
-            .set(Self::BRUSH_BRIGHT, Brush::Solid(Color::repeat_opaque(130)))
+            // .set(Self::BRUSH_LIGHT, Brush::Solid(Color::repeat_opaque(140)))
+            .set(Self::BRUSH_LIGHTER, Brush::Solid(Color::repeat_opaque(85))) // menu items are now white
+            // .set(Self::BRUSH_LIGHTEST, Brush::Solid(Color::repeat_opaque(80)))
+            // .set(Self::BRUSH_BRIGHT, Brush::Solid(Color::repeat_opaque(130)))
             .set(
                 Self::BRUSH_BRIGHTEST,
                 Brush::Solid(Color::repeat_opaque(160)),

@@ -2091,7 +2091,7 @@ impl WidgetBuilder {
                 .into(),
             background: self
                 .background
-                .unwrap_or_else(|| ctx.style.property(Style::BRUSH_PRIMARY))
+                .unwrap_or_else(|| ctx.style.property(Style::UI_PRIMARY))
                 .into(),
             foreground: self
                 .foreground
