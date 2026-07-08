@@ -778,7 +778,7 @@ impl AnimationEditor {
                             animation.time_slice().end - animation.time_slice().start,
                             200000.0,
                         ),
-                        brush: ui.style.get_or_default(Style::BRUSH_PRIMARY),
+                        brush: ui.style.get_or_default(Style::UI_PRIMARY),
                     }]),
                 );
 

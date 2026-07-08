@@ -318,9 +318,9 @@ impl LogPanel {
                 WidgetBuilder::new()
                     .with_context_menu(self.context_menu.menu.clone())
                     .with_background(if count.is_multiple_of(2) {
-                        ctx.style.property(Style::BRUSH_LIGHT)
+                        ctx.style.property(Style::UI_SECONDARY)
                     } else {
-                        ctx.style.property(Style::BRUSH_DARK)
+                        ctx.style.property(Style::UI_PRIMARY)
                     })
                     .with_child(
                         TextBuilder::new(

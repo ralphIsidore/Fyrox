@@ -594,7 +594,7 @@ impl ListViewBuilder {
         let style = &ctx.style;
         let back = BorderBuilder::new(
             WidgetBuilder::new()
-                .with_background(style.property(Style::BRUSH_DARK))
+                // .with_background(style.property(Style::BRUSH_DARK))
                 .with_foreground(style.property(Style::BRUSH_LIGHT)),
         )
         .with_stroke_thickness(Thickness::uniform(1.0).into())

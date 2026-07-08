@@ -591,7 +591,7 @@ fn make_button(
             .with_corner_radius(2.0f32.into())
             .with_pad_by_corner_radius(false),
         )
-        .with_normal_brush(ctx.style.property(Style::BRUSH_PRIMARY))
+        .with_normal_brush(ctx.style.property(Style::UI_PRIMARY))
         .with_hover_brush(ctx.style.property(Style::BRUSH_LIGHT))
         .with_pressed_brush(ctx.style.property(Style::BRUSH_BRIGHT_BLUE))
         .build(ctx),

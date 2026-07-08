@@ -121,9 +121,8 @@ pub fn create_menu_item(
 ) -> Handle<MenuItem> {
     let decorator = DecoratorBuilder::new(
         BorderBuilder::new(WidgetBuilder::new())
-            .with_stroke_thickness(Thickness::uniform(1.0).into())
-            .with_pad_by_corner_radius(false)
-            .with_corner_radius(ctx.style.property(Style::MENU_ITEM_BORDER_RADIUS)),
+            // .with_stroke_thickness(Thickness::uniform(1.0).into())
+            .with_pad_by_corner_radius(false), // .with_corner_radius(ctx.style.property(Style::MENU_ITEM_BORDER_RADIUS)),
     )
     .build(ctx)
     .to_base();
@@ -161,9 +160,8 @@ pub fn create_menu_item_shortcut(
 
     let decorator = DecoratorBuilder::new(
         BorderBuilder::new(WidgetBuilder::new())
-            .with_stroke_thickness(Thickness::uniform(1.0).into())
-            .with_pad_by_corner_radius(false)
-            .with_corner_radius(ctx.style.property(Style::MENU_ITEM_BORDER_RADIUS)),
+            // .with_stroke_thickness(Thickness::uniform(1.0).into())
+            .with_pad_by_corner_radius(false), // .with_corner_radius(ctx.style.property(Style::MENU_ITEM_BORDER_RADIUS)),
     )
     .build(ctx)
     .to_base();

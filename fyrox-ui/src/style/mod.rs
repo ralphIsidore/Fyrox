@@ -363,6 +363,11 @@ impl Style {
 
     pub const UI_PRIMARY: &'static str = "Global.UI.Primary";
     pub const MENU_ITEM_BORDER_RADIUS: &'static str = "Global.Item.Border.Radius"; // sets overall UI Menu item raduis for top menu
+    pub const UI_SECONDARY: &'static str = "Global.UI.Seconday";
+
+    pub const BUTTON_CORNER_RADIUS: &'static str = "Button.CornerRadius";
+    /// A name of style property, that defines border thickness of a button.
+    pub const BUTTON_BORDER_THICKNESS: &'static str = "Button.BorderThickness";
 
     pub const BORDER_STROKE_THICKNESS: &'static str = "Globa.border.Thickness";
     pub const FULL_WINDOW_MARGIN_LEFT: &'static str = "global.Full.Window.Margin.Left";
@@ -386,39 +391,41 @@ impl Style {
         style
             .set(Self::UI_PRIMARY, Brush::solid(0, 30, 30)) //overall UI
             .set(Self::MENU_ITEM_BORDER_RADIUS, 4.0)
-            .set(Self::FULL_WINDOW_MARGIN_LEFT, Thickness::left(8.0))
-            // .set(Self::TEST_BORDER_THICKNESS, Thickness::uniform(30.0))
-            .set(Self::BRUSH_DARKEST, Brush::Solid(Color::repeat_opaque(20)))
-            // .set(Self::BRUSH_DARKER, Brush::Solid(Color::repeat_opaque(30)))
+            .set(Self::UI_SECONDARY, Brush::Solid(Color::opaque(10, 90, 120)))
+            .set(Self::BUTTON_CORNER_RADIUS, 1.0)
+            // .set(Self::FULL_WINDOW_MARGIN_LEFT, Thickness::left(8.0))
+            // // .set(Self::TEST_BORDER_THICKNESS, Thickness::uniform(30.0))
+            // .set(Self::BRUSH_DARKEST, Brush::Solid(Color::repeat_opaque(20))) // collective containing menu items border
+            // .set(Self::BRUSH_DARKER, Brush::Solid(Color::repeat_opaque(30))) //each menu item border
             .set(Self::BRUSH_DARK, Brush::Solid(Color::repeat_opaque(40)))
-            .set(Self::BRUSH_PRIMARY, Brush::Solid(Color::repeat_opaque(50)))
+            // .set(Self::BRUSH_PRIMARY, Brush::Solid(Color::repeat_opaque(50)))
             .set(
                 Self::BRUSH_LIGHTER_PRIMARY,
                 Brush::Solid(Color::repeat_opaque(60)),
             )
             // .set(Self::BRUSH_LIGHT, Brush::Solid(Color::repeat_opaque(140)))
-            .set(Self::BRUSH_LIGHTER, Brush::Solid(Color::repeat_opaque(85))) // menu items are now white
+            // .set(Self::BRUSH_LIGHTER, Brush::Solid(Color::repeat_opaque(85))) // menu items are now white --highlight
             // .set(Self::BRUSH_LIGHTEST, Brush::Solid(Color::repeat_opaque(80)))
             // .set(Self::BRUSH_BRIGHT, Brush::Solid(Color::repeat_opaque(130)))
-            .set(
-                Self::BRUSH_BRIGHTEST,
-                Brush::Solid(Color::repeat_opaque(160)),
-            )
-            .set(
-                Self::BRUSH_BRIGHT_BLUE,
-                Brush::Solid(Color::opaque(80, 118, 178)),
-            )
-            .set(
-                Self::BRUSH_HIGHLIGHT,
-                Brush::Solid(Color::opaque(80, 118, 178)),
-            )
-            .set(
-                Self::BRUSH_DIM_BLUE,
-                Brush::Solid(Color::opaque(66, 99, 149)),
-            )
-            .set(Self::BRUSH_TEXT, Brush::Solid(Color::opaque(190, 190, 190)))
+            // .set(
+            //     Self::BRUSH_BRIGHTEST,
+            //     Brush::Solid(Color::repeat_opaque(160)),
+            // )
+            // .set(
+            //     Self::BRUSH_BRIGHT_BLUE,
+            //     Brush::Solid(Color::opaque(80, 118, 178)),
+            // )
+            // .set(
+            //     Self::BRUSH_HIGHLIGHT,
+            //     Brush::Solid(Color::opaque(80, 118, 178)),
+            // )
+            // .set(
+            //     Self::BRUSH_DIM_BLUE,
+            //     Brush::Solid(Color::opaque(66, 99, 149)),
+            // )
+            .set(Self::BRUSH_TEXT, Brush::Solid(Color::opaque(200, 1, 19))) //TODO: REVIEW ALL ELEMENTS CONTAINING THIS STYLE
             // .set(Self::BRUSH_FOREGROUND, Brush::Solid(Color::WHITE))
-            .set(Self::BRUSH_INFORMATION, Brush::Solid(Color::ANTIQUE_WHITE))
+            // .set(Self::BRUSH_INFORMATION, Brush::Solid(Color::ANTIQUE_WHITE))
             .set(Self::BRUSH_WARNING, Brush::Solid(Color::GOLD))
             .set(Self::BRUSH_ERROR, Brush::Solid(Color::RED))
             .set(Self::BRUSH_OK, Brush::Solid(Color::GREEN))
@@ -426,7 +433,7 @@ impl Style {
                 Self::BRUSH_OK_NORMAL,
                 Brush::Solid(Color::opaque(0, 130, 0)),
             )
-            .set(Self::BRUSH_OK_HOVER, Brush::Solid(Color::opaque(0, 150, 0)))
+            // .set(Self::BRUSH_OK_HOVER, Brush::Solid(Color::opaque(0, 150, 0)))
             .set(
                 Self::BRUSH_OK_PRESSED,
                 Brush::Solid(Color::opaque(0, 170, 0)),

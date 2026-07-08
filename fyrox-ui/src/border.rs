@@ -342,7 +342,7 @@ impl BorderBuilder {
     /// Creates a [`Border`] widget, but does not add it to the user interface. Also see [`Self::build`] docs.
     pub fn build_border(mut self, ctx: &BuildContext) -> Border {
         if self.widget_builder.foreground.is_none() {
-            self.widget_builder.foreground = Some(ctx.style.property(Style::BRUSH_PRIMARY));
+            self.widget_builder.foreground = Some(ctx.style.property(Style::UI_PRIMARY));
         }
         Border {
             widget: self.widget_builder.build(ctx),

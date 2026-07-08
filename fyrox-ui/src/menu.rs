@@ -26,6 +26,8 @@
 use crate::button::Button;
 use crate::message::MessageData;
 use crate::stack_panel::StackPanel;
+use crate::style::resource::StyleResourceExt;
+use crate::style::Style;
 use crate::vector_image::VectorImage;
 use crate::{
     border::BorderBuilder,
@@ -827,7 +829,7 @@ impl MenuBuilder {
 
         let back = BorderBuilder::new(
             WidgetBuilder::new()
-                // .with_background(ctx.style.property(Style::BRUSH_PRIMARY))
+                // .with_background(ctx.style.property(Style::UI_PRIMARY))
                 .with_child(
                     StackPanelBuilder::new(
                         WidgetBuilder::new().with_children(self.items.clone().to_base()),
@@ -1034,7 +1036,7 @@ impl MenuItemBuilder {
                                 // .with_foreground(ctx.style.property(Style::BRUSH_LIGHTEST))
                                 // .with_horizontal_alignment(HorizontalAlignment::Right)
                                 // .with_vertical_alignment(VerticalAlignment::Center)
-                                .with_margin(Thickness::uniform(1.0))
+                                // .with_margin(Thickness::uniform(1.0))
                                 .on_column(2),
                         )
                         .with_text(shortcut)
@@ -1084,9 +1086,9 @@ impl MenuItemBuilder {
                 BorderBuilder::new(WidgetBuilder::new())
                     .with_stroke_thickness(Thickness::uniform(0.0).into()),
             )
-            // .with_hover_brush(ctx.style.property(Style::BRUSH_BRIGHT_BLUE))
-            // .with_selected_brush(ctx.style.property(Style::BRUSH_BRIGHT_BLUE))
-            // .with_normal_brush(ctx.style.property(Style::BRUSH_PRIMARY))
+            .with_hover_brush(ctx.style.property(Style::BRUSH_BRIGHT_BLUE))
+            .with_selected_brush(ctx.style.property(Style::BRUSH_BRIGHT_BLUE))
+            .with_normal_brush(ctx.style.property(Style::UI_PRIMARY))
             .with_pressed_brush(Brush::Solid(Color::TRANSPARENT).into())
             .with_pressable(false)
             .build(ctx)
@@ -1326,9 +1328,7 @@ fn keyboard_navigation(
 /// common semantics (for example: new document, new image; save, save all; close).
 pub fn make_menu_splitter(ctx: &mut BuildContext) -> Handle<UiNode> {
     BorderBuilder::new(
-        WidgetBuilder::new()
-            .with_height(1.0)
-            .with_margin(Thickness::top_bottom(1.0)), // .with_foreground(ctx.style.property(Style::BRUSH_LIGHTEST)),
+        WidgetBuilder::new().with_height(1.0), // .with_margin(Thickness::top_bottom(1.0)), // .with_foreground(ctx.style.property(Style::BRUSH_LIGHTEST)),
     )
     .build(ctx)
     .to_base()
