@@ -1033,10 +1033,10 @@ impl MenuItemBuilder {
                     .with_child(
                         TextBuilder::new(
                             WidgetBuilder::new()
-                                // .with_foreground(ctx.style.property(Style::BRUSH_LIGHTEST))
-                                // .with_horizontal_alignment(HorizontalAlignment::Right)
-                                // .with_vertical_alignment(VerticalAlignment::Center)
-                                // .with_margin(Thickness::uniform(1.0))
+                                .with_foreground(ctx.style.property(Style::BRUSH_LIGHTEST))
+                                .with_horizontal_alignment(HorizontalAlignment::Right)
+                                .with_vertical_alignment(VerticalAlignment::Center)
+                                .with_margin(Thickness::uniform(1.0))
                                 .on_column(2),
                         )
                         .with_text(shortcut)

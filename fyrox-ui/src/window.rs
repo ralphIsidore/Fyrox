@@ -1224,7 +1224,7 @@ impl WindowBuilder {
             WidgetBuilder::new()
                 .with_horizontal_alignment(HorizontalAlignment::Stretch)
                 .with_height(22.0)
-                .with_background(ctx.style.property(Style::BRUSH_DARKER))
+                .with_background(ctx.style.property(Style::UI_SECONDARY)) // main area borders
                 .with_child({
                     title_grid = GridBuilder::new(
                         WidgetBuilder::new()
@@ -1294,15 +1294,15 @@ impl WindowBuilder {
                 })
                 .on_row(0),
         )
-        // .with_pad_by_corner_radius(false)
-        // .with_corner_radius(4.0f32.into())
+        .with_pad_by_corner_radius(false)
+        .with_corner_radius(4.0f32.into())
         .with_stroke_thickness(Thickness::uniform(0.0).into())
         .build(ctx)
         .to_base();
 
         let border = BorderBuilder::new(
             WidgetBuilder::new()
-                .with_foreground(ctx.style.property(Style::BRUSH_DARKER))
+                .with_foreground(ctx.style.property(Style::UI_SECONDARY))
                 .with_child(
                     GridBuilder::new(
                         WidgetBuilder::new()

@@ -595,8 +595,8 @@ impl PopupBuilder {
 
         let body = BorderBuilder::new(
             WidgetBuilder::new()
-                // .with_background(style.property(Style::BRUSH_PRIMARY))
-                // .with_foreground(style.property(Style::BRUSH_DARKEST))
+                .with_background(style.property(Style::UI_PRIMARY))
+                .with_foreground(style.property(Style::BRUSH_DARKEST))
                 .with_child(self.content),
         )
         // .with_corner_radius(10.0.into())

@@ -210,7 +210,7 @@ fn adjust_decorator(builder: DecoratorBuilder, ctx: &BuildContext) -> DecoratorB
         .with_normal_brush(ctx.style.property(Style::BRUSH_DARKER))
         .with_hover_brush(ctx.style.property(Style::BRUSH_DARK))
         .with_pressed_brush(ctx.style.property(Style::UI_PRIMARY))
-        .with_selected_brush(ctx.style.property(Style::BRUSH_LIGHTER_PRIMARY))
+    // .with_selected_brush(ctx.style.property(Style::BRUSH_LIGHTER_PRIMARY))
 }
 
 fn text_margin() -> Thickness {
