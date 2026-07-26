@@ -358,12 +358,25 @@ impl Style {
     pub const BRUSH_CANCEL_PRESSED: &'static str = "Global.Brush.Cancel.Pressed";
     /// The name of the hover state brush of the `cancel` context action.
     pub const BRUSH_CANCEL_HOVER: &'static str = "Global.Brush.Cancel.Hover";
+    /*
 
-    //RALPH
 
-    pub const UI_PRIMARY: &'static str = "Global.UI.Primary";
+
+    */
+
+    // -- ui should be extremely adjustable and easily understood
+    //overall UI items split for simplicity
+    pub const BG_PRIMARY: &'static str = "Global.UI.Primary"; // for the overall look and feel.
+    pub const BG_SECONDARY: &'static str = "Background.Secondary"; // for dropdowns, buttons, and all the minor stuff in the UI .
+    pub const BG_ACCENT: &'static str = "Background.Accent"; // for things like tooltips and
+    pub const BG_HEADER: &'static str = "Background.Accent"; // for things like tooltips and
+
+    //
+    pub const INTERACTIVE_CANCEL: &'static str = "Interactive.Cancel";
+    pub const INTERACTIVE_CANCEL_HOVER: &'static str = "Interactive.Cancel.Hover";
+    pub const INTERACTIVE_CANCEL_PRESSED: &'static str = "Interactive.Cancel.Pressed";
+
     pub const MENU_ITEM_BORDER_RADIUS: &'static str = "Global.Item.Border.Radius"; // sets overall UI Menu item raduis for top menu
-    pub const UI_SECONDARY: &'static str = "Global.UI.Seconday";
 
     pub const BUTTON_CORNER_RADIUS: &'static str = "Button.CornerRadius";
     /// A name of style property, that defines border thickness of a button.
@@ -389,36 +402,38 @@ impl Style {
     pub fn dark_style() -> Style {
         let mut style = Self::base_style();
         style
-            .set(Self::UI_PRIMARY, Brush::solid(0, 30, 30)) //overall UI
+            .set(Self::BG_PRIMARY, Brush::solid(47, 72, 88)) //overall UI
+            .set(Self::BG_HEADER, Brush::solid(33, 86, 50))
             .set(Self::MENU_ITEM_BORDER_RADIUS, 4.0)
-            .set(Self::UI_SECONDARY, Brush::Solid(Color::opaque(250, 90, 0)))
+            // .set(Self::BG_SECONDARY, Brush::Solid(Color::opaque(250, 90, 0)))
             .set(Self::BUTTON_CORNER_RADIUS, 1.0)
             // .set(Self::FULL_WINDOW_MARGIN_LEFT, Thickness::left(8.0))
             // // .set(Self::TEST_BORDER_THICKNESS, Thickness::uniform(30.0))
             // .set(Self::BRUSH_DARKEST, Brush::Solid(Color::repeat_opaque(20))) // collective containing menu items border
             .set(Self::BRUSH_DARKER, Brush::Solid(Color::repeat_opaque(30))) //each menu item border
-            .set(Self::BRUSH_DARK, Brush::Solid(Color::repeat_opaque(40)))
+            //////////
+            // .set(Self::BRUSH_DARK, Brush::Solid(Color::repeat_opaque(40)))
             // .set(Self::BRUSH_PRIMARY, Brush::Solid(Color::repeat_opaque(50)))
             .set(
                 Self::BRUSH_LIGHTER_PRIMARY,
                 Brush::Solid(Color::repeat_opaque(60)),
             )
             // .set(Self::BRUSH_LIGHT, Brush::Solid(Color::repeat_opaque(140)))
-            .set(Self::BRUSH_LIGHTER, Brush::Solid(Color::repeat_opaque(85))) // menu items are now white --highlight
+            // .set(Self::BRUSH_LIGHTER, Brush::Solid(Color::repeat_opaque(85))) // menu items are now white --highlight
             // .set(Self::BRUSH_LIGHTEST, Brush::Solid(Color::repeat_opaque(80)))
-            // .set(Self::BRUSH_BRIGHT, Brush::Solid(Color::repeat_opaque(130)))
+            .set(Self::BRUSH_BRIGHT, Brush::Solid(Color::repeat_opaque(130)))
             // .set(
             //     Self::BRUSH_BRIGHTEST,
             //     Brush::Solid(Color::repeat_opaque(160)),
             // )
-            // .set(
-            //     Self::BRUSH_BRIGHT_BLUE,
-            //     Brush::Solid(Color::opaque(80, 118, 178)),
-            // )
-            // .set(
-            //     Self::BRUSH_HIGHLIGHT,
-            //     Brush::Solid(Color::opaque(80, 118, 178)),
-            // )
+            .set(
+                Self::BRUSH_BRIGHT_BLUE,
+                Brush::Solid(Color::opaque(80, 118, 178)),
+            )
+            .set(
+                Self::BRUSH_HIGHLIGHT,
+                Brush::Solid(Color::opaque(80, 118, 178)),
+            )
             // .set(
             //     Self::BRUSH_DIM_BLUE,
             //     Brush::Solid(Color::opaque(66, 99, 149)),

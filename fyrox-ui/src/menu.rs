@@ -829,7 +829,7 @@ impl MenuBuilder {
 
         let back = BorderBuilder::new(
             WidgetBuilder::new()
-                // .with_background(ctx.style.property(Style::UI_PRIMARY))
+                // .with_background(ctx.style.property(Style::BG_PRIMARY))
                 .with_child(
                     StackPanelBuilder::new(
                         WidgetBuilder::new().with_children(self.items.clone().to_base()),
@@ -1088,7 +1088,7 @@ impl MenuItemBuilder {
             )
             .with_hover_brush(ctx.style.property(Style::BRUSH_BRIGHT_BLUE))
             .with_selected_brush(ctx.style.property(Style::BRUSH_BRIGHT_BLUE))
-            .with_normal_brush(ctx.style.property(Style::UI_PRIMARY))
+            .with_normal_brush(ctx.style.property(Style::BG_PRIMARY))
             .with_pressed_brush(Brush::Solid(Color::TRANSPARENT).into())
             .with_pressable(false)
             .build(ctx)

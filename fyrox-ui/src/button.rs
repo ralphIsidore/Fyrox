@@ -414,7 +414,7 @@ impl ButtonBuilder {
         let content = self.content.map(|c| c.build(ctx)).unwrap_or_default();
         let back = self.back.unwrap_or_else(|| {
             make_decorator_builder(ctx)
-                .with_normal_brush(ctx.style.property(Style::BRUSH_LIGHT))
+                .with_normal_brush(ctx.style.property(Style::BG_SECONDARY))
                 .with_hover_brush(ctx.style.property(Style::BRUSH_LIGHTER))
                 .with_pressed_brush(ctx.style.property(Style::BRUSH_LIGHTEST))
                 .build(ctx)

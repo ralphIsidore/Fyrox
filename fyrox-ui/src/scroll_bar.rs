@@ -638,7 +638,7 @@ impl ScrollBarBuilder {
 
         let body = self.body.unwrap_or_else(|| {
             BorderBuilder::new(
-                WidgetBuilder::new().with_background(ctx.style.property(Style::BRUSH_DARK)),
+                WidgetBuilder::new().with_background(ctx.style.property(Style::BG_PRIMARY)),
             )
             .with_stroke_thickness(Thickness::uniform(1.0).into())
             .build(ctx)

@@ -200,7 +200,7 @@ fn colorize(handle: Handle<UiNode>, ui: &UserInterface, index: &mut usize) {
     if let Some(decorator) = node.cast::<Decorator>() {
         if node.parent().is_some() {
             let new_brush = if (*index).is_multiple_of(2) {
-                ui.style.property(Style::UI_PRIMARY)
+                ui.style.property(Style::BG_PRIMARY)
             } else {
                 ui.style.property(Style::BRUSH_LIGHTER_PRIMARY)
             };
@@ -330,8 +330,8 @@ impl WorldViewer {
 
         let window = WindowBuilder::new(
             WidgetBuilder::new()
-                .with_margin(left_margin)
                 // Ralph
+                .with_margin(left_margin)
                 .with_name("WorldOutliner"),
         )
         .with_title(WindowTitle::text("World Viewer"))
@@ -412,9 +412,9 @@ impl WorldViewer {
         let element = ButtonBuilder::new(WidgetBuilder::new().with_height(16.0))
             .with_back(
                 DecoratorBuilder::new(BorderBuilder::new(
-                    WidgetBuilder::new().with_foreground(ctx.style.property(Style::UI_PRIMARY)),
+                    WidgetBuilder::new().with_foreground(ctx.style.property(Style::BG_PRIMARY)),
                 ))
-                .with_normal_brush(ctx.style.property(Style::UI_PRIMARY))
+                .with_normal_brush(ctx.style.property(Style::BG_PRIMARY))
                 .with_hover_brush(ctx.style.property(Style::BRUSH_BRIGHT_BLUE))
                 .build(ctx),
             )

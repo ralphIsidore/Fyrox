@@ -346,14 +346,12 @@ fn make_tooltip(ctx: &mut BuildContext, text: &str) -> RcUiNodeHandle {
     let handle = BorderBuilder::new(
         WidgetBuilder::new()
             .with_visibility(false)
-            .with_foreground(ctx.style.property(Style::BRUSH_DARKEST))
+            // .with_foreground(ctx.style.property(Style::BRUSH_DARKEST))
             .with_background(ctx.style.property(Style::BRUSH_TEXT))
             .with_max_size(Vector2::new(300.0, f32::INFINITY))
             .with_child(
                 TextBuilder::new(
-                    WidgetBuilder::new()
-                        .with_margin(Thickness::uniform(2.0))
-                        .with_foreground(ctx.style.property(Style::BRUSH_DARKER)),
+                    WidgetBuilder::new().with_margin(Thickness::uniform(2.0)), // .with_foreground(ctx.style.property(Style::BRUSH_DARKER)),
                 )
                 .with_wrap(WrapMode::Letter)
                 .with_text(text)
